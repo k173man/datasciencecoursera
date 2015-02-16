@@ -1,5 +1,5 @@
 # library(datasets)
-str(iris)
+(str(iris)
 im <- colMeans(iris[,1:4])
 mode(im)
 
