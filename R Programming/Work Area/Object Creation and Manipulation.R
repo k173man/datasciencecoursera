@@ -12,7 +12,25 @@ rep(c(0, 1, 2), each = 10)
 # +++++ Vectors +++++
 
 # +++++ Lists +++++
-# "pre-allocate" an empty list of length 5
+# "pre-allocate" alist of 5 empty element
 lst <- vector("list", 5)
+lst2 <- list(FName = c("Shane", "Jen"), LName = c("Reed", "Tierney-Reed"))
 
-# +++++  +++++
+
+# +++++ Data Frames +++++
+# lst2 from above to a data frame
+lst2df <- as.data.frame(lst2, stringsAsFactors = FALSE)
+
+# by default, character data is created as factors, so must use stringsAsFactors = FALSE
+test <- data.frame(
+    Name=c("shane", "shane", "shane", "Jen", "Jen", "Jen"), 
+    Score=c(1, 2, 3, 1, 2, 3),
+    stringsAsFactors = FALSE
+)
+
+
+
+
+
+
+

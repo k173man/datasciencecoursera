@@ -1,14 +1,36 @@
 best <- function(state, outcome) {
-    # Exclude NAs
-    # Handling ties; sort on hospital name & return the 1st one
-    
-    ## Read outcome data
     possibleOutcomes <- c("heart attack", "heart failure", "pneumonia")
+    ocIndexes <- c(11, 17, 23) 
+    names(ocIndexes) <- possibleOutcomes
+    
     ## Check that state and outcome are valid
-        # invalid state: stop("invalid state")
-        # invalid outcome: stop("invalid outcome")
-    ## Return hospital name in that state with lowest 30-day death rate
-
+    if(!any(state.abb == state))
+        stop("invalid outcome")
+    
+    if(!any(possibleOutcomes == outcome))
+        stop("invalid outcome")
+    
+    
+    # Read outcome data
+    outcomeOfCare <- read.csv(
+        "data/outcome-of-care-measures.csv", 
+        colClasses = "character", 
+        na.strings = "Not Available"
+    )
+    
+    st <- subset(
+        outcomeOfCare, 
+        outcomeOfCare$State == state & !is.na(outcomeOfCare[, ocIndexes[[outcome]]])
+    )
+    
+    # select hosital name & selected outcome variables
+    st <- st[c(2, ocIndexes[[outcome]])]
+    # convert outcome variable to numeric
+    st[, 2] <- as.numeric(st[, 2])
+    # order by outcome, hospital name
+    st <- st[order(st[, 2], st[, 1]), ]
+    
+    st$Hospital.Name[1]
 }
 
 # Sample output from the function.

@@ -1,6 +1,65 @@
 rankall <- function(outcome, num = "best") {
-    ## Read outcome data
+    possibleOutcomes <- c("heart attack", "heart failure", "pneumonia")
+    ocIndexes <- c(11, 17, 23) 
+    names(ocIndexes) <- possibleOutcomes
+    
     ## Check that state and outcome are valid
+    if(!any(state.abb == state))
+        stop("invalid outcome")
+    
+    if(!any(possibleOutcomes == outcome))
+        stop("invalid outcome")
+    
+    # Read outcome data
+    outcomeOfCare <- read.csv(
+        "data/outcome-of-care-measures.csv", 
+        colClasses = "character", 
+        na.strings = "Not Available"
+    )
+    
+    ococ <- subset(
+        outcomeOfCare, 
+        !is.na(outcomeOfCare[, ocIndexes[[outcome]]])
+    )
+    
+    # select hosital name, state & selected outcome variables
+    ococ <- ococ[c(2, 7, ocIndexes[[outcome]])]
+    names(ococ) <- c("Hospital", "State", "Outcome")
+    # convert outcome variable to numeric
+    ococ[, 3] <- as.numeric(ococ[, 3])
+    
+    # order by outcome, hospital name
+    if (!is.numeric(num) & num == "worst")
+        ococ <- ococ[order(-ococ[, 3], ococ[, 2]), ococ[, 1]), ]
+    else
+        ococ <- ococ[order(ococ[, 3], ococ[, 2]), ococ[, 1]), ]
+    
+    num2 <- if (!is.numeric(num))
+        1
+    else
+        num
+
+    state <- NULL
+    hospital <- NULL
+    
+    for(st in state.abb) {
+        tmp <- subset(ococ, ococ$State == st & !is.na(ococ$Hospital.Name[num2]))
+        
+        if (nrow(tmp) == 0)
+            hospital <- c(hospital, NA_character_)
+        else
+            hospital <- c(hospital, tmp$Hospital[1])
+        
+        state <- c(state, st)
+    }
+    
+    data.frame(
+        hospital = hospital, 
+        state = state, 
+        row.names = state.abb, 
+        stringsAsFactors = FALSE
+    )
+
     ## For each state, find the hospital of the given rank
     ## Return a data frame with the hospital names and the (abbreviated) state name
     
