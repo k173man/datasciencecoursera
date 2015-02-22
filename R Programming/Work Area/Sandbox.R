@@ -44,7 +44,7 @@ st
 #     classes
 # }
 
-df <- data.frame(State = c("CA", "CO", "NJ", "TX"), Pop = c(10, 20, 30, 40), stringsAsFactors = FALSE)
+df <- data.frame(State = c("CA", "CO", "NJ", "TX"), Pop = c(10, 10, 30, 40), stringsAsFactors = FALSE)
 
 state <- vector("character")
 hospital <- vector("character")
@@ -61,4 +61,12 @@ for(st in state.abb) {
 
 df2 <- data.frame(Hospital = hospital, State = state, stringsAsFactors = FALSE)
 
+state.abb[state.abb == "DC"]
 
+outcomeOfCare <- read.csv(
+    "data/outcome-of-care-measures.csv", 
+    colClasses = "character", 
+    na.strings = "Not Available"
+)
+
+unique(outcomeOfCare$State)

@@ -3,10 +3,7 @@ rankhospital <- function(state, outcome, num = "best") {
     ocIndexes <- c(11, 17, 23) 
     names(ocIndexes) <- possibleOutcomes
     
-    ## Check that state and outcome are valid
-    if(!any(state.abb == state))
-        stop("invalid outcome")
-    
+    # Check that outcome is valid
     if(!any(possibleOutcomes == outcome))
         stop("invalid outcome")
 
@@ -17,6 +14,11 @@ rankhospital <- function(state, outcome, num = "best") {
         na.strings = "Not Available"
     )
 
+    # Check that state is valid
+    stabb <-  unique(outcomeOfCare$State)
+    if(!any(stabb == state))
+        stop("invalid state")
+    
     st <- subset(
         outcomeOfCare, 
         outcomeOfCare$State == state & !is.na(outcomeOfCare[, ocIndexes[[outcome]]])
@@ -41,11 +43,3 @@ rankhospital <- function(state, outcome, num = "best") {
     ## Return hospital name in that state with the given rank 30-day death rate
     st$Hospital.Name[num2]
 }
-
-# Sample Output
-    # > rankhospital("TX", "heart failure", 4)
-    # [1] "DETAR HOSPITAL NAVARRO"
-    # > rankhospital("MD", "heart attack", "worst")
-    # [1] "HARFORD MEMORIAL HOSPITAL"
-    # > rankhospital("MN", "heart attack", 5000)
-    # [1] NA
