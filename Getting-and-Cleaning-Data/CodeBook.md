@@ -83,102 +83,100 @@ Tidy Dataset
 ------------
 Features selected for the Tidy Dataset consist of measurements on the mean and standard deviation for each signal measurements from the UCI HAR Dataset, in addition to the SubjectId and the Activity.  SubjectId is an integer, which indicates the subject for the associated set measurements; possible values for SubjectId are 1 through 30. Activity is a character variable, which indicates the activity associated with a set of measurements; possible values for Activity are: Laying, Sitting, Standing, Walking, Walking, Downstairs, Walking, Upstairs. The metadata for the remaining variables are the same as in the original dataset, which is detailed above.  A complete list of the variables in the Tidy Dataset is given below.
 
-## Transformations
-
+###Transformations
 As mentioned above, the UCI HAR Dataset was divided into two datasets (train and test), using a 70/30 split. Each dataset has a file containing the associated test subject identifiers, and a file containing the associated activity identifiers.
 The Tidy Dataset was constructed using the following transformations:
 
-1 For each dataset (train and test), the measurements were joined (merged) to the associated subject identifiers and activity identifiers
-2 The train and test datasets were unioned to create a new dataset, called trainTest
-3 Using the criteria provided for the Course Project, values provided in the features.txt were used to determine which variables to select for the Tidy Dataset
- 1 This resulted in a new dataset called meanStdData, which was based on the trainTest dataset
- 2 The meanStdData dataset contains all of the observations (rows) from the trainTest dataset; however, it contains a subset of the columns (variables)
-4 Values provided in the features.txt file were cleaned up (parenthesis were removed), and then used to rename the columns in the meanStdData dataset
-5 The meanStdData dataset was used to create the tidyData dataset, which consists of the average of each variable for each activity and each subject
+1. For each dataset (train and test), the measurements were joined (merged) to the associated subject identifiers and activity identifiers
+2. The train and test datasets were unioned to create a new dataset, called trainTest
+3. Using the criteria provided for the Course Project, values provided in the features.txt were used to determine which variables to select for the Tidy Dataset
+  1. This resulted in a new dataset called meanStdData, which was based on the trainTest dataset
+  2. The meanStdData dataset contains all of the observations (rows) from the trainTest dataset; however, it contains a subset of the columns (variables)
+4. Values provided in the features.txt file were cleaned up (parenthesis were removed), and then used to rename the columns in the meanStdData dataset
+5. The meanStdData dataset was used to create the tidyData dataset, which consists of the average of each variable for each activity and each subject
 
 
 
-## Feature List
+###Feature List
 
-
-1 SubjectId
-2 Activity
-3 tBodyAcc-mean-X
-4 tBodyAcc-mean-Y
-5 tBodyAcc-mean-Z
-6 tBodyAcc-std-X
-7 tBodyAcc-std-Y
-8 tBodyAcc-std-Z
-9 tGravityAcc-mean-X
-10 tGravityAcc-mean-Y
-11 tGravityAcc-mean-Z
-12 tGravityAcc-std-X
-13 tGravityAcc-std-Y
-14 tGravityAcc-std-Z
-15 tBodyAccJerk-mean-X
-16 tBodyAccJerk-mean-Y
-17 tBodyAccJerk-mean-Z
-18 tBodyAccJerk-std-X
-19 tBodyAccJerk-std-Y
-20 tBodyAccJerk-std-Z
-21 tBodyGyro-mean-X
-22 tBodyGyro-mean-Y
-23 tBodyGyro-mean-Z
-24 tBodyGyro-std-X
-25 tBodyGyro-std-Y
-26 tBodyGyro-std-Z
-27 tBodyGyroJerk-mean-X
-28 tBodyGyroJerk-mean-Y
-29 tBodyGyroJerk-mean-Z
-30 tBodyGyroJerk-std-X
-31 tBodyGyroJerk-std-Y
-32 tBodyGyroJerk-std-Z
-33 tBodyAccMag-mean
-34 tBodyAccMag-std
-35 tGravityAccMag-mean
-36 tGravityAccMag-std
-37 tBodyAccJerkMag-mean
-38 tBodyAccJerkMag-std
-39 tBodyGyroMag-mean
-40 tBodyGyroMag-std
-41 tBodyGyroJerkMag-mean
-42 tBodyGyroJerkMag-std
-43 fBodyAcc-mean-X
-44 fBodyAcc-mean-Y
-45 fBodyAcc-mean-Z
-46 fBodyAcc-std-X
-47 fBodyAcc-std-Y
-48 fBodyAcc-std-Z
-49 fBodyAcc-meanFreq-X
-50 fBodyAcc-meanFreq-Y
-51 fBodyAcc-meanFreq-Z
-52 fBodyAccJerk-mean-X
-53 fBodyAccJerk-mean-Y
-54 fBodyAccJerk-mean-Z
-55 fBodyAccJerk-std-X
-56 fBodyAccJerk-std-Y
-57 fBodyAccJerk-std-Z
-58 fBodyAccJerk-meanFreq-X
-59 fBodyAccJerk-meanFreq-Y
-60 fBodyAccJerk-meanFreq-Z
-61 fBodyGyro-mean-X
-62 fBodyGyro-mean-Y
-63 fBodyGyro-mean-Z
-64 fBodyGyro-std-X
-65 fBodyGyro-std-Y
-66 fBodyGyro-std-Z
-67 fBodyGyro-meanFreq-X
-68 fBodyGyro-meanFreq-Y
-69 fBodyGyro-meanFreq-Z
-70 fBodyAccMag-mean
-71 fBodyAccMag-std
-72 fBodyAccMag-meanFreq
-73 fBodyBodyAccJerkMag-mean
-74 fBodyBodyAccJerkMag-std
-75 fBodyBodyAccJerkMag-meanFreq
-76 fBodyBodyGyroMag-mean
-77 fBodyBodyGyroMag-std
-78 fBodyBodyGyroMag-meanFreq
-79 fBodyBodyGyroJerkMag-mean
-80 fBodyBodyGyroJerkMag-std
-81 fBodyBodyGyroJerkMag-meanFreq
+1. SubjectId
+2. Activity
+3. tBodyAcc-mean-X
+4. tBodyAcc-mean-Y
+5. tBodyAcc-mean-Z
+6. tBodyAcc-std-X
+7. tBodyAcc-std-Y
+8. tBodyAcc-std-Z
+9. tGravityAcc-mean-X
+10. tGravityAcc-mean-Y
+11. tGravityAcc-mean-Z
+12. tGravityAcc-std-X
+13. tGravityAcc-std-Y
+14. tGravityAcc-std-Z
+15. tBodyAccJerk-mean-X
+16. tBodyAccJerk-mean-Y
+17. tBodyAccJerk-mean-Z
+18. tBodyAccJerk-std-X
+19. tBodyAccJerk-std-Y
+20. tBodyAccJerk-std-Z
+21. tBodyGyro-mean-X
+22. tBodyGyro-mean-Y
+23. tBodyGyro-mean-Z
+24. tBodyGyro-std-X
+25. tBodyGyro-std-Y
+26. tBodyGyro-std-Z
+27. tBodyGyroJerk-mean-X
+28. tBodyGyroJerk-mean-Y
+29. tBodyGyroJerk-mean-Z
+30. tBodyGyroJerk-std-X
+31. tBodyGyroJerk-std-Y
+32. tBodyGyroJerk-std-Z
+33. tBodyAccMag-mean
+34. tBodyAccMag-std
+35. tGravityAccMag-mean
+36. tGravityAccMag-std
+37. tBodyAccJerkMag-mean
+38. tBodyAccJerkMag-std
+39. tBodyGyroMag-mean
+40. tBodyGyroMag-std
+41. tBodyGyroJerkMag-mean
+42. tBodyGyroJerkMag-std
+43. fBodyAcc-mean-X
+44. fBodyAcc-mean-Y
+45. fBodyAcc-mean-Z
+46. fBodyAcc-std-X
+47. fBodyAcc-std-Y
+48. fBodyAcc-std-Z
+49. fBodyAcc-meanFreq-X
+50. fBodyAcc-meanFreq-Y
+51. fBodyAcc-meanFreq-Z
+52. fBodyAccJerk-mean-X
+53. fBodyAccJerk-mean-Y
+54. fBodyAccJerk-mean-Z
+55. fBodyAccJerk-std-X
+56. fBodyAccJerk-std-Y
+57. fBodyAccJerk-std-Z
+58. fBodyAccJerk-meanFreq-X
+59. fBodyAccJerk-meanFreq-Y
+60. fBodyAccJerk-meanFreq-Z
+61. fBodyGyro-mean-X
+62. fBodyGyro-mean-Y
+63. fBodyGyro-mean-Z
+64. fBodyGyro-std-X
+65. fBodyGyro-std-Y
+66. fBodyGyro-std-Z
+67. fBodyGyro-meanFreq-X
+68. fBodyGyro-meanFreq-Y
+69. fBodyGyro-meanFreq-Z
+70. fBodyAccMag-mean
+71. fBodyAccMag-std
+72. fBodyAccMag-meanFreq
+73. fBodyBodyAccJerkMag-mean
+74. fBodyBodyAccJerkMag-std
+75. fBodyBodyAccJerkMag-meanFreq
+76. fBodyBodyGyroMag-mean
+77. fBodyBodyGyroMag-std
+78. fBodyBodyGyroMag-meanFreq
+79. fBodyBodyGyroJerkMag-mean
+80. fBodyBodyGyroJerkMag-std
+81. fBodyBodyGyroJerkMag-meanFreq
