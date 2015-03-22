@@ -2,7 +2,7 @@ How to use the **run_analysis.R** script
 ----------------------------------------
 The **run_analysis.R** script uses the UCI HAR Dataset to produce a the Tidy Dataset.  The easiest way to use the script is to simply loaded into an R environment, e.g. RStudio, and run it.  However, there are a few dependencies/requirements.
 
-1. An internet connection for downloading data and, if necessary, downloading R packages
+1. An internet connection for downloading the data and, if necessary, downloading R packages
 2. R packages
   1. data.table
   2. dplyr
@@ -52,6 +52,6 @@ The decompressed UCI HAR Dataset.zip file results in the directory structure and
          * total_acc_y_test.txt
          * total_acc_z_test.txt
 
-Optional
---------
+Optional - How to Skip Automatic File Download
+----------------------------------------------
 If you already have the contents of UCI HAR Dataset.zip in you working directory, you can comment out lines 6-8 to prevent the file from being downloaded and decompressed.  If you comment out lines 6-8, make sure there is a subdirectory in your working directory, called UCI HAR Dataset, with the directory/file structure detail above.  It is also acceptable to have the file located directly beneath your working directory, i.e. not contained in the UCI HAR Dataset directory.
